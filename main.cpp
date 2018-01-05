@@ -1,3 +1,25 @@
+/*
+Isaac McAuley
+January 2018
+main.cpp
+
+Implentation Details:
+The program works with a brute force algorithm. The board is saved as a board object that peice objects can be placed onto.
+
+A solution is found by attempting to place each piece onto each index of the board.
+
+The program attemps to put the zero index (top left) on every index of the board. Every piece can be rotated, or flipped (mirrored) so each nonsymmetrical piece can be placed 8 different ways.
+
+The program is implemented recrusively with a "tree strcuture" ie. Each piece placement on each node is a node and the leaves are base cases.
+Base Cases:
+  All peices fit on board: return true
+  Placement error: return false
+  All peices to fit in a spot return false: false
+Recursive Case:
+  Piece fits: move onto next indicie
+
+*/
+
 #include "Board.h"
 #include "Piece.h"
 #include <iostream>
@@ -79,6 +101,7 @@ void read_file()
     }
 
     pieces.push_back(new_piece);
+    delete new_piece;
 
     piece_name--;
   }
