@@ -1,0 +1,13 @@
+class Block
+{
+private:
+  char letter;
+  int x;
+  int y;
+public:
+  char get_letter;
+  void set_letter;
+
+  int[2] get_coordinates;
+  void set_coordinates;
+};
