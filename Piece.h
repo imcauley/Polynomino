@@ -18,4 +18,5 @@ public:
   void add_block(int x, int y);
   void print_peice();
   vector<Block*> get_piece();
+  Piece* rotate_piece();
 };

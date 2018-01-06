@@ -26,45 +26,26 @@ Recursive Case:
 #include <fstream>
 using namespace std;
 
-void read_file();
+Board* read_file(vector<Piece*>* peices);
 
 int main()
 {
-  Board thing;
-  thing.resize(8, 9);
-  for(int i = 0; i < 8; i++)
-  {
-    for(int j = 0; j < 9; j++)
-    {
-      thing.put(i,j,'A');
-    }
-  }
+  vector<Piece*>* peices = new vector<Piece*>();
+  Board* main_board = read_file(peices);
+  main_board->print_board();
 
-  thing.put(0, 6, 'B');
-
-  for(int i = 0; i < 8; i++)
-  {
-    for(int j = 0; j < 9; j++)
-    {
-      cout << thing.find(i,j);
-    }
-    cout << endl;
-  }
-
-  read_file();
-  //cout << thing.board[6 * (9) + 7] << endl;
+  cout << (*peices)[11]->get_name() << endl;
   return 0;
 }
 
 
-void read_file()
+Board* read_file(vector<Piece*>* pieces)
 {
   ifstream inFile;
 
   int rows;
   int cols;
   int num_elements;
-  vector<Piece*> pieces;
 
   int block_x;
   int block_y;
@@ -79,6 +60,7 @@ void read_file()
     cout << rows << cols << num_elements << endl;
   }
 
+  Board* board = new Board(rows, cols, num_elements);
 
   for(int i = 0; i < num_elements; i++)
   {
@@ -94,10 +76,9 @@ void read_file()
       new_piece->add_block(block_x, block_y);
     }
 
-    pieces.push_back(new_piece);
+    pieces->push_back(new_piece);
 
     piece_name--;
   }
-
-    return;
+    return board;
 }

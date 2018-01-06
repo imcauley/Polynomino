@@ -60,3 +60,43 @@ void Piece::print_peice()
 {
 
 }
+
+/*
+rotate(Piece* piece)
+
+Parameters and Return:
+  Put in a peice pointer and get back a new piece that is rotated 90 (deg)
+
+Details:
+  Works using a linear transformation.
+  Each block's coordinates are multiplied by this matrix:
+  [0  -1]   ==   [cos(90)  -sin(90)]
+  [1   0]        [sin(90)   cos(90)]
+
+  This rotates the piece but also puts the x coordinates into the second quadrent so the piece must be shifted.
+
+  So the coordinates are added with this vector:
+  [ piece.height ]
+  [      0       ]
+
+  Because the new width is the height and it needs to be moved over one piece width.
+*/
+Piece* Piece::rotate_piece()
+{
+  Piece* rotated = new Piece(get_name(),0);
+  int x_prime;
+  int y_prime;
+
+  for(int i = 0; i < get_piece().size(); i++)
+  {
+    x_prime = get_piece()[i]->get_y();
+    x_prime *= (-1);
+    x_prime += length - 1;
+
+    y_prime = get_piece()[i]->get_x();
+
+    rotated->add_block(x_prime, y_prime);
+  }
+
+  return rotated;
+}
