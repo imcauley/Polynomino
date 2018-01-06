@@ -30,6 +30,7 @@ Piece::Piece(char name, int size)
   blocks.resize(0);
 }
 
+
 void Piece::add_block(int x, int y)
 {
   Block* new_block = new Block(x, y);
@@ -99,4 +100,35 @@ Piece* Piece::rotate_piece()
   }
 
   return rotated;
+}
+
+/*
+reflect_piece(Piece* piece)
+
+Parameters and Return:
+  Put in a peice pointer and get back a new piece that is reflected upon the y axis
+
+Linear Transformation:
+  [-1  0] [ x ]   +   [ width ]   =   [ x']
+  [ 0  1] [ y ]       [   0   ]       [ y']
+*/
+
+Piece* Piece::reflect_piece()
+{
+  Piece* reflected = new Piece(get_name(),0);
+  int x_prime;
+  int y_prime;
+
+  for(int i = 0; i < get_piece().size(); i++)
+  {
+    x_prime = get_piece()[i]->get_x();
+    x_prime *= (-1);
+    x_prime += width - 1;
+
+    y_prime = get_piece()[i]->get_y();
+
+    reflected->add_block(x_prime, y_prime);
+  }
+
+  return reflected;
 }

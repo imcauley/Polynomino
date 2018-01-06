@@ -19,4 +19,5 @@ public:
   void print_peice();
   vector<Block*> get_piece();
   Piece* rotate_piece();
+  Piece* reflect_piece();
 };

@@ -8,6 +8,7 @@ void test_one_block(void);
 void test_multiple_blocks(void);
 void test_rotate(void);
 void test_rotate2(void);
+void test_reflect(void);
 
 void test_init(void)
 {
@@ -52,6 +53,9 @@ void test_rotate(void)
   TEST_CHECK(rotated->get_piece()[4]->get_x() == 0);
 }
 
+/*
+Rotates an L tetris piece
+*/
 void test_rotate2(void)
 {
   Piece new_peice = Piece('A', 1);
@@ -67,6 +71,23 @@ void test_rotate2(void)
   TEST_CHECK(rotated->get_piece()[0]->get_y() == 0);
 }
 
+void test_reflect(void)
+{
+  Piece new_peice = Piece('A', 1);
+
+  new_peice.add_block(0,0);
+  new_peice.add_block(0,1);
+  new_peice.add_block(0,2);
+  new_peice.add_block(1,2);
+
+  Piece* rotated = new_peice.reflect_piece();
+
+  TEST_CHECK(rotated->get_piece()[0]->get_x() == 1);
+  TEST_CHECK(rotated->get_piece()[0]->get_y() == 0);
+  TEST_CHECK(rotated->get_piece()[3]->get_x() == 0);
+  TEST_CHECK(rotated->get_piece()[3]->get_y() == 2);
+}
+
 
 
 TEST_LIST = {
@@ -74,5 +95,6 @@ TEST_LIST = {
   {"1 block", test_one_block},
   {"5 blocks", test_multiple_blocks},
   {"rotate 90", test_rotate},
-  {"rotate l", test_rotate2}
+  {"rotate L", test_rotate2},
+  {"reflect L", test_reflect}
 };
