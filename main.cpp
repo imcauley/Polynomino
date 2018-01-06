@@ -79,12 +79,6 @@ void read_file()
     cout << rows << cols << num_elements << endl;
   }
 
-  /*
-  Piece piece2 = Piece('B', 6);
-  pieces.push_back(&piece2);
-  cout << pieces[0]->get_name() << endl;
-  */
-
 
   for(int i = 0; i < num_elements; i++)
   {
@@ -101,12 +95,9 @@ void read_file()
     }
 
     pieces.push_back(new_piece);
-    delete new_piece;
 
     piece_name--;
   }
 
-    Piece test = *pieces[0];
-    test.print_peice();
     return;
 }

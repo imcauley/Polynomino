@@ -5,5 +5,6 @@ private:
   int y;
 public:
   Block(int x, int y);
-  //void get_coordinates(int coordinates[2]);
+  int get_x();
+  int get_y();
 };

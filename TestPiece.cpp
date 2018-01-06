@@ -4,26 +4,38 @@
 #include <vector>
 
 void test_init(void);
+void test_one_block(void);
+void test_multiple_blocks(void);
 
 void test_init(void)
 {
-  Piece new_piece = Piece('A', 5);
+  Piece new_piece = Piece('A', 0);
   TEST_CHECK(new_piece.get_name() == 'A');
   return;
 }
 
-void test_blocks(void)
+void test_one_block(void)
 {
-  char expected [2][2] = {{'A','\0'},{'A','\0'}};
+  Piece new_piece = Piece('A', 1);
+  new_piece.add_block(0,0);
+  TEST_CHECK(new_piece.get_piece().size() == 1);
+  TEST_CHECK(new_piece.get_piece()[0]->get_x() == 0);
+  TEST_CHECK(new_piece.get_piece()[0]->get_y() == 0);
+}
 
-  Piece new_piece = Piece('A', 5);
-  new_piece.add_block(0, 0);
-  new_piece.add_block(0, 1);
-
-  TEST_CHECK(new_piece.get_piece() == expected);
-  return;
+void test_multiple_blocks(void)
+{
+  Piece new_piece = Piece('A', 1);
+  for(int i = 0; i < 5; i++)
+  {
+    new_piece.add_block(0,i);
+  }
+  TEST_CHECK(new_piece.get_piece().size() == 5);
+  TEST_CHECK(new_piece.get_piece()[4]->get_y() == 4);
 }
 
 TEST_LIST = {
-  {"init", test_init}
+  {"init", test_init},
+  {"1 block", test_one_block},
+  {"5 blocks", test_multiple_blocks}
 };

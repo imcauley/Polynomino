@@ -17,5 +17,5 @@ public:
   char get_name();
   void add_block(int x, int y);
   void print_peice();
-  vector<vector<char>>* get_piece();
+  vector<Block*> get_piece();
 };
