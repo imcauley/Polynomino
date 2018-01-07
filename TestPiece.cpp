@@ -1,5 +1,5 @@
 #include "acutest.h"
-#include "Piece.h"
+#include "Board.h"
 #include <iostream>
 #include <vector>
 
@@ -9,6 +9,7 @@ void test_multiple_blocks(void);
 void test_rotate(void);
 void test_rotate2(void);
 void test_reflect(void);
+void test_place(void);
 
 void test_init(void)
 {
@@ -88,6 +89,19 @@ void test_reflect(void)
   TEST_CHECK(rotated->get_piece()[3]->get_y() == 2);
 }
 
+void test_place(void)
+{
+  Board board = Board(3, 5, 2);
+  Piece new_peice = Piece('A', 1);
+
+  new_peice.add_block(0,0);
+  new_peice.add_block(0,1);
+  new_peice.add_block(0,2);
+
+  TEST_CHECK(board.place_piece(&new_peice, 0, 2) == true);
+  TEST_CHECK(board.place_piece(&new_peice, 0, 0) == false);
+  TEST_CHECK(board.place_piece(&new_peice, 2, 3) == false);
+}
 
 
 TEST_LIST = {
@@ -96,5 +110,6 @@ TEST_LIST = {
   {"5 blocks", test_multiple_blocks},
   {"rotate 90", test_rotate},
   {"rotate L", test_rotate2},
-  {"reflect L", test_reflect}
+  {"reflect L", test_reflect},
+  {"place L", test_place}
 };

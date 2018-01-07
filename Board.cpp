@@ -42,3 +42,41 @@ void Board::print_board()
     cout << endl;
   }
 }
+
+bool Board::place_piece(Piece* piece, int x, int y)
+{
+  int curr_x;
+  int curr_y;
+  char letter = piece->get_name();
+
+  for(int i = 0; i < piece->get_piece().size(); i++)
+  {
+    curr_x = (piece->get_piece()[i])->get_x() + x;
+    curr_y = (piece->get_piece()[i])->get_y() + y;
+
+    if(curr_x >= 0 && curr_x < num_rows)
+    {
+      if(curr_x >= 0 && curr_x < num_rows)
+      {
+        if(find(curr_x, curr_y) == '#')
+        {
+          put(curr_x, curr_y, letter);
+        }
+        else
+        {
+          return false;
+        }
+      }
+      else
+      {
+        return false;
+      }
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  return true;
+}

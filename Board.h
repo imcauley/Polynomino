@@ -1,5 +1,6 @@
 #include <vector>
 using namespace std;
+#include "Piece.h"
 
 class Board
 {
@@ -13,4 +14,5 @@ public:
   char find(int row, int col);
   void put(int row, int col, char value);
   void print_board();
+  bool place_piece(Piece::Piece* piece, int x, int y);
 };
