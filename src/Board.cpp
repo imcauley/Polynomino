@@ -4,7 +4,7 @@ January 2018
 Board.cpp
 */
 
-#include "Board.h"
+#include "../headers/Board.h"
 #include <vector>
 #include <iostream>
 
@@ -99,7 +99,7 @@ Used for the backtracking part of the alogirthm
 */
 void Board::delete_piece(Piece* piece)
 {
-  char letter = piece->get_name()
+  char letter = piece->get_name();
 
   for(int i = 0; i < num_rows; i++)
   {

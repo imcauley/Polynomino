@@ -1,4 +1,4 @@
-#include "Block.h"
+#include "../headers/Block.h"
 
 Block::Block(int x, int y)
 {

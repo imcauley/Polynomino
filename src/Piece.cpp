@@ -11,7 +11,7 @@ Use of a piece:
   get a representation of the piece where it tells the board where new blocks need to go.
 */
 
-#include "Piece.h"
+#include "../headers/Piece.h"
 #include <iostream>
 using namespace std;
 

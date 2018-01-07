@@ -5,7 +5,7 @@ TestPiece.cpp
 */
 
 #include "acutest.h"
-#include "Board.h"
+#include "../headers/Board.h"
 #include <iostream>
 #include <vector>
 
