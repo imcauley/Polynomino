@@ -1,3 +1,9 @@
+/*
+Isaac McAuley
+January 2018
+TestPiece.cpp
+*/
+
 #include "acutest.h"
 #include "Board.h"
 #include <iostream>
@@ -104,6 +110,7 @@ void test_place(void)
 }
 
 
+
 TEST_LIST = {
   {"init", test_init},
   {"1 block", test_one_block},
@@ -111,5 +118,5 @@ TEST_LIST = {
   {"rotate 90", test_rotate},
   {"rotate L", test_rotate2},
   {"reflect L", test_reflect},
-  {"place L", test_place}
+  {"place L", test_place},
 };

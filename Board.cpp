@@ -1,3 +1,9 @@
+/*
+Isaac McAuley
+January 2018
+Board.cpp
+*/
+
 #include "Board.h"
 #include <vector>
 #include <iostream>
@@ -33,6 +39,7 @@ void Board::put(int row, int col, char value)
 
 void Board::print_board()
 {
+  cout << endl;
   for(int i = 0; i < num_rows; i++)
   {
     for(int j = 0; j < num_cols; j++)
@@ -41,42 +48,64 @@ void Board::print_board()
     }
     cout << endl;
   }
+  cout << endl;
 }
 
+
+/*
+place_piece(Piece* piece, int x, int y)
+
+Takes in a piece pointer and coordinates and attempts to place piece on that coordinate.
+
+If the function cannot place the piece it will return False and not place any of the blocks on the board.
+
+*/
 bool Board::place_piece(Piece* piece, int x, int y)
 {
+  bool can_place = true;
   int curr_x;
   int curr_y;
   char letter = piece->get_name();
 
-  for(int i = 0; i < piece->get_piece().size(); i++)
+
+  for(int i = 0; i < piece->get_piece().size() && can_place; i++)
   {
     curr_x = (piece->get_piece()[i])->get_x() + x;
     curr_y = (piece->get_piece()[i])->get_y() + y;
 
-    if(curr_x >= 0 && curr_x < num_rows)
+    if(curr_x < 0 || curr_x >= num_rows ||
+       curr_y < 0 || curr_y >= num_cols ||
+       find(curr_x, curr_y) != '#')
     {
-      if(curr_x >= 0 && curr_x < num_rows)
-      {
-        if(find(curr_x, curr_y) == '#')
-        {
-          put(curr_x, curr_y, letter);
-        }
-        else
-        {
-          return false;
-        }
-      }
-      else
-      {
-        return false;
-      }
+      can_place = false;
     }
-    else
-    {
-      return false;
-    }
+
   }
 
-  return true;
+  if(can_place)
+  {
+    for(int i = 0; i < piece->get_piece().size(); i++)
+    {
+      curr_x = (piece->get_piece()[i])->get_x() + x;
+      curr_y = (piece->get_piece()[i])->get_y() + y;
+      put(curr_x, curr_y, letter);
+    }
+  }
+  return can_place;
+}
+
+/*
+Used for the backtracking part of the alogirthm
+*/
+void Board::delete_piece(Piece* piece)
+{
+  char letter = piece->get_name()
+
+  for(int i = 0; i < num_rows; i++)
+  {
+    for(int j = 0; j < num_cols; j++)
+    {
+      if(find(i, j) == letter) put(i, j, '#');
+    }
+  }
 }
