@@ -20,8 +20,9 @@ Recursive Case:
 
 */
 
-#include "Board.h"
-#include "Piece.h"
+//#include "./headers/Board.h"
+//#include "./headers/Piece.h"
+#include "./headers/Solver.h"
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -30,11 +31,11 @@ Board* read_file(vector<Piece*>* peices);
 
 int main()
 {
-  vector<Piece*>* peices = new vector<Piece*>();
-  Board* main_board = read_file(peices);
-  main_board->print_board();
+  vector<Piece*>* pieces = new vector<Piece*>();
+  Board* main_board = read_file(pieces);
 
-  cout << (*peices)[11]->get_name() << endl;
+  Solver solve = Solver(main_board);
+
   return 0;
 }
 
@@ -43,9 +44,9 @@ Board* read_file(vector<Piece*>* pieces)
 {
   ifstream inFile;
 
-  int rows;
-  int cols;
-  int num_elements;
+  int rows = 0;
+  int cols = 0;
+  int num_elements = 0;
 
   int block_x;
   int block_y;
