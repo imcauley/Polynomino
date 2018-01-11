@@ -5,11 +5,16 @@ Solver.h
 */
 
 #include "./Board.h"
-#include "./Piece.h"
 #include <vector>
+#include <string>
 
 class Solver
 {
+private:
+  Board* board;
+  vector<Piece*> start_pieces;
+  int start_num;
 public:
-  Solver(Board* board, vector<Piece*>* piece);
+  Solver(string filename);
+  void print_solved();
 };

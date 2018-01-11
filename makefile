@@ -1,12 +1,18 @@
-test: Piece.o Block.o Board.o
-	g++ -Wall -o test ./tests/TestPiece.cpp Piece.o Block.o Board.o -Wall
-	./test
-
-PolySolver: Piece.o Block.o Board.o Solver.o
+PolySolver: clean Piece.o Block.o Board.o Solver.o
 	g++ -Wall -o PolySolver ./main.cpp Piece.o Block.o Board.o Solver.o
 
+TestSolver: clean Piece.o Block.o Board.o Solver.o
+	g++ -Wall -o TestSolver ./tests/TestSolver.cpp Piece.o Block.o Board.o Solver.o -Wall
+	./TestSolver
+
+TestPiece: clean Piece.o Block.o Board.o
+	g++ -Wall -o TestPiece ./tests/TestPiece.cpp Piece.o Block.o Board.o -Wall
+	./TestPiece
+
 clean:
-	rm *.o
+	-rm ./PolySolver
+	-rm ./TestPiece
+	-rm *.o
 
 Solver.o: Board.o
 	g++ -Wall -c ./src/Solver.cpp Board.o

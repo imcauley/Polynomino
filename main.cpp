@@ -34,7 +34,6 @@ int main()
   vector<Piece*>* pieces = new vector<Piece*>();
   Board* main_board = read_file(pieces);
 
-  Solver solve = Solver(main_board);
 
   return 0;
 }
