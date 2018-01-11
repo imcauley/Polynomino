@@ -51,6 +51,15 @@ void Board::print_board()
   cout << endl;
 }
 
+int Board::get_rows()
+{
+  return num_rows;
+}
+int Board::get_cols()
+{
+  return num_cols;
+}
+
 
 /*
 place_piece(Piece* piece, int x, int y)

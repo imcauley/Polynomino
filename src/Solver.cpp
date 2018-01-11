@@ -53,3 +53,50 @@ void Solver::print_solved()
   board->print_board();
   cout << start_pieces.size();
 }
+
+bool Solver::solve()
+{
+  bool solved = solve(start_pieces, start_pieces.size());
+  board->print_board();
+  return solved;
+
+}
+
+bool Solver::solve(vector<Piece*> pieces, int num_elements)
+{
+  Piece* current;
+  if(num_elements == 0)
+  {
+    return true;
+  }
+  else
+  {
+    for(int r = 0; r < board->get_rows(); r++)
+    {
+      for(int c = 0; c < board->get_cols(); c++)
+      {
+        for(int p = 0; p < pieces.size(); p++)
+        {
+          current = pieces[p];
+          if(board->place_piece(current, r, c))
+          {
+            pieces.erase(pieces.begin() + p);
+            bool solved = solve(pieces, num_elements--);
+            if(solved)
+            {
+              return true;
+            }
+            else
+            {
+              pieces.push_back(current);
+              board->delete_piece(current);
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  return false;
+}

@@ -14,7 +14,9 @@ private:
   Board* board;
   vector<Piece*> start_pieces;
   int start_num;
+  bool solve(vector<Piece*> pieces, int num_elements);
 public:
   Solver(string filename);
+  bool solve();
   void print_solved();
 };

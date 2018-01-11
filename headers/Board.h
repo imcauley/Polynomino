@@ -13,6 +13,10 @@ public:
   vector <char> board;
   char find(int row, int col);
   void put(int row, int col, char value);
+
+  int get_rows();
+  int get_cols();
+
   void print_board();
   bool place_piece(Piece::Piece* piece, int x, int y);
   void delete_piece(Piece* piece);

@@ -2,7 +2,7 @@ PolySolver: clean Piece.o Block.o Board.o Solver.o
 	g++ -Wall -o PolySolver ./main.cpp Piece.o Block.o Board.o Solver.o
 
 TestSolver: clean Piece.o Block.o Board.o Solver.o
-	g++ -Wall -o TestSolver ./tests/TestSolver.cpp Piece.o Block.o Board.o Solver.o -Wall
+	g++ -Wall -g -o TestSolver ./tests/TestSolver.cpp Piece.o Block.o Board.o Solver.o -Wall
 	./TestSolver
 
 TestPiece: clean Piece.o Block.o Board.o
@@ -15,7 +15,7 @@ clean:
 	-rm *.o
 
 Solver.o: Board.o
-	g++ -Wall -c ./src/Solver.cpp Board.o
+	g++ -g -Wall -c ./src/Solver.cpp Board.o
 
 Board.o: Piece.o
 	g++ -Wall -c ./src/Board.cpp Piece.o

@@ -11,13 +11,20 @@ TestSolver.cpp
 
 
 void test_init(void);
+void test_two_cubes();
 
 void test_init()
 {
   Solver solve = Solver("./input/2.txt");
-  solve.print_solved();
+}
+
+void test_two_cubes()
+{
+  Solver solve = Solver("./input/3.txt");
+  TEST_CHECK(solve.solve() == true);
 }
 
 TEST_LIST = {
-  {"init", test_init}
+  {"init", test_init},
+  {"2 cubes", test_two_cubes}
 };
