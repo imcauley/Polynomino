@@ -62,6 +62,19 @@ void Piece::print_peice()
 
 }
 
+void Piece::get_set(vector<Piece*>* set)
+{
+  set->push_back(this);
+  set->push_back(this->rotate_piece());
+  set->push_back(this->rotate_piece()->rotate_piece());
+  set->push_back(this->rotate_piece()->rotate_piece()->rotate_piece());
+
+  set->push_back(this->reflect_piece());
+  set->push_back(this->reflect_piece()->rotate_piece());
+  set->push_back(this->reflect_piece()->rotate_piece()->rotate_piece());
+  set->push_back(this->reflect_piece()->rotate_piece()->rotate_piece()->rotate_piece());
+}
+
 /*
 rotate(Piece* piece)
 

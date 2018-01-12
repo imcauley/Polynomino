@@ -66,11 +66,13 @@ bool Solver::solve()
 bool Solver::solve(vector<Piece*> pieces, int num_elements)
 {
   Piece* current;
-  vector<Piece*> set;
+  Piece* set_current;
 
   bool solved = false;
 
-  if(pieces.size() == 0)
+  cout << num_elements << ", " << pieces.size() << endl;
+
+  if(num_elements == 0)
   {
     return true;
   }
@@ -80,30 +82,40 @@ bool Solver::solve(vector<Piece*> pieces, int num_elements)
     {
       current = pieces[p];
       pieces.erase(pieces.begin() + p);
+      vector<Piece*>* set = new std::vector<Piece*>();
 
-      for(int x = 0; x < board->get_rows(); x++)
+      current->get_set(set);
+      for(int n = 0; n < set->size(); n++)
       {
-        for(int y = 0; y < board->get_cols(); y++)
+        set_current = (*set)[n];
+
+        for(int x = 0; x < board->get_rows(); x++)
         {
-          if(board->place_piece(current, x, y))
+          for(int y = 0; y < board->get_cols(); y++)
           {
-            solved = solve(pieces, num_elements--);
-            if(solved)
+            if(board->place_piece(set_current, x, y))
             {
-              return true;
-            }
-            else
-            {
-              board->delete_piece(current);
+              solved = solve(pieces, num_elements - 1);
+              if(solved)
+              {
+                delete set;
+                return true;
+              }
+              else
+              {
+                board->delete_piece(set_current);
+              }
             }
           }
         }
-      }
 
+      }
+      delete set;
       pieces.insert(pieces.begin() + p, current);
     }
 
     //pieces.erase(pieces.begin() + 0);
     //return solve(pieces, pieces.size());
   }
+  return false;
 }

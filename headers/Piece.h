@@ -20,4 +20,5 @@ public:
   vector<Block*> get_piece();
   Piece* rotate_piece();
   Piece* reflect_piece();
+  void get_set(vector<Piece*>* set);
 };
