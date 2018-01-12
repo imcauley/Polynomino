@@ -5,6 +5,7 @@ Solver.cpp
 */
 
 #include "../headers/Solver.h"
+#include <vector>
 #include <fstream>
 #include <iostream>
 
@@ -57,7 +58,7 @@ void Solver::print_solved()
 bool Solver::solve()
 {
   bool solved = solve(start_pieces, start_pieces.size());
-  board->print_board();
+  print_solved();
   return solved;
 
 }
@@ -65,38 +66,44 @@ bool Solver::solve()
 bool Solver::solve(vector<Piece*> pieces, int num_elements)
 {
   Piece* current;
-  if(num_elements == 0)
+  vector<Piece*> set;
+
+  bool solved = false;
+
+  if(pieces.size() == 0)
   {
     return true;
   }
   else
   {
-    for(int r = 0; r < board->get_rows(); r++)
+    for(int p = 0; p < pieces.size(); p++)
     {
-      for(int c = 0; c < board->get_cols(); c++)
+      current = pieces[p];
+      pieces.erase(pieces.begin() + p);
+
+      for(int x = 0; x < board->get_rows(); x++)
       {
-        for(int p = 0; p < pieces.size(); p++)
+        for(int y = 0; y < board->get_cols(); y++)
         {
-          current = pieces[p];
-          if(board->place_piece(current, r, c))
+          if(board->place_piece(current, x, y))
           {
-            pieces.erase(pieces.begin() + p);
-            bool solved = solve(pieces, num_elements--);
+            solved = solve(pieces, num_elements--);
             if(solved)
             {
               return true;
             }
             else
             {
-              pieces.push_back(current);
               board->delete_piece(current);
             }
           }
-
         }
       }
-    }
-  }
 
-  return false;
+      pieces.insert(pieces.begin() + p, current);
+    }
+
+    //pieces.erase(pieces.begin() + 0);
+    //return solve(pieces, pieces.size());
+  }
 }
