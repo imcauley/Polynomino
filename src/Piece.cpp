@@ -64,10 +64,12 @@ void Piece::print_peice()
 
 void Piece::get_set(vector<Piece*>* set)
 {
+  bool alreadyContains = false;
   set->push_back(this);
   set->push_back(this->rotate_piece());
   set->push_back(this->rotate_piece()->rotate_piece());
   set->push_back(this->rotate_piece()->rotate_piece()->rotate_piece());
+
 
   set->push_back(this->reflect_piece());
   set->push_back(this->reflect_piece()->rotate_piece());
@@ -144,4 +146,37 @@ Piece* Piece::reflect_piece()
   }
 
   return reflected;
+}
+
+bool Piece::isEqualTo(Piece* that)
+{
+  bool isEqualTo = true;
+  bool containsBlock = false;
+  int sizeA = this->get_piece().size();
+  int sizeB = that->get_piece().size();
+
+  if(sizeA != sizeB)
+  {
+    return false;
+  }
+
+  for(int a = 0; a < sizeA; a++)
+  {
+    containsBlock = false;
+    for(int b = 0; b < sizeB; b++)
+    {
+      if(blocks[a]->get_x() == that->get_piece()[b]->get_x())
+      {
+        if(blocks[a]->get_y() == that->get_piece()[b]->get_y())
+        {
+          containsBlock = true;
+        }
+      }
+    }
+    if(!containsBlock)
+    {
+      return false;
+    }
+  }
+  return true;
 }

@@ -9,7 +9,7 @@ Solver.cpp
 #include <fstream>
 #include <iostream>
 
-Solver::Solver(string filename)
+Solver::Solver(const string filename)
 {
   ifstream inFile;
 
@@ -19,7 +19,7 @@ Solver::Solver(string filename)
   int block_x;
   int block_y;
   int piece_size;
-  char piece_name = 'Z';
+  char piece_name = 'A';
 
   inFile.open(filename);
 
@@ -43,7 +43,7 @@ Solver::Solver(string filename)
       }
 
       start_pieces.push_back(new_piece);
-      piece_name--;
+      piece_name++;
     }
   }
   return;
@@ -51,8 +51,9 @@ Solver::Solver(string filename)
 
 void Solver::print_solved()
 {
+  cout << endl;
   board->print_board();
-  cout << start_pieces.size();
+  cout << endl;
 }
 
 bool Solver::solve()
@@ -69,8 +70,6 @@ bool Solver::solve(vector<Piece*> pieces, int num_elements)
   Piece* set_current;
 
   bool solved = false;
-
-  cout << num_elements << ", " << pieces.size() << endl;
 
   if(num_elements == 0)
   {

@@ -21,4 +21,5 @@ public:
   Piece* rotate_piece();
   Piece* reflect_piece();
   void get_set(vector<Piece*>* set);
+  bool isEqualTo(Piece* that);
 };
