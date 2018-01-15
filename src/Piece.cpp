@@ -32,7 +32,7 @@ Piece::Piece(char name, int size)
 
 Piece::~Piece()
 {
-  for(int i = 0; i < blocks.size(); i++)
+  for(unsigned int i = 0; i < blocks.size(); i++)
   {
     delete blocks[i];
   }
@@ -78,7 +78,7 @@ void Piece::get_set(vector<Piece*>* set)
   for(int i = 0; i < 7; i++)
   {
     alreadyContains = false;
-    for(int s = 0; s < set->size(); s++)
+    for(unsigned int s = 0; s < set->size(); s++)
     {
       if(current->isEqualTo((*set)[s]))
       {
@@ -126,7 +126,7 @@ Piece* Piece::rotate_piece()
   int x_prime;
   int y_prime;
 
-  for(int i = 0; i < get_piece().size(); i++)
+  for(unsigned int i = 0; i < get_piece().size(); i++)
   {
     x_prime = get_piece()[i]->get_y();
     x_prime *= (-1);
@@ -157,7 +157,7 @@ Piece* Piece::reflect_piece()
   int x_prime;
   int y_prime;
 
-  for(int i = 0; i < get_piece().size(); i++)
+  for(unsigned int i = 0; i < get_piece().size(); i++)
   {
     x_prime = get_piece()[i]->get_x();
     x_prime *= (-1);

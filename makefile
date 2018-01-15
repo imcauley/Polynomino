@@ -15,13 +15,13 @@ clean:
 	-rm *.o
 
 Solver.o: Board.o
-	g++ -g -Wall -c ./src/Solver.cpp Board.o
+	g++ -Wall -c ./src/Solver.cpp
 
 Board.o: Piece.o
-	g++ -Wall -c ./src/Board.cpp Piece.o
+	g++ -Wall -c ./src/Board.cpp 
 
 Piece.o: Block.o
-	g++ -Wall -c ./src/Piece.cpp Block.o
+	g++ -Wall -c ./src/Piece.cpp
 
 Block.o:
 	g++ -Wall -c ./src/Block.cpp

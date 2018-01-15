@@ -21,7 +21,7 @@ Solver::Solver(const string filename)
   int piece_size;
   char piece_name = 'A';
 
-  inFile.open(filename);
+  inFile.open(filename.c_str());
 
   if(inFile)
   {
@@ -51,7 +51,7 @@ Solver::Solver(const string filename)
 
 Solver::~Solver()
 {
-  for(int i = 0; i < start_pieces.size(); i++)
+  for(unsigned int i = 0; i < start_pieces.size(); i++)
   {
     delete start_pieces[i];
   }
@@ -85,14 +85,14 @@ bool Solver::solve(vector<Piece*> pieces, int num_elements)
   }
   else
   {
-    for(int p = 0; p < pieces.size(); p++)
+    for(unsigned int p = 0; p < pieces.size(); p++)
     {
       current = pieces[p];
       pieces.erase(pieces.begin() + p);
       vector<Piece*>* set = new std::vector<Piece*>();
 
       current->get_set(set);
-      for(int n = 0; n < set->size(); n++)
+      for(unsigned int n = 0; n < set->size(); n++)
       {
         set_current = (*set)[n];
 

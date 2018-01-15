@@ -77,7 +77,7 @@ bool Board::place_piece(Piece* piece, int x, int y)
   char letter = piece->get_name();
 
 
-  for(int i = 0; i < piece->get_piece().size() && can_place; i++)
+  for(unsigned int i = 0; i < piece->get_piece().size() && can_place; i++)
   {
     curr_x = (piece->get_piece()[i])->get_x() + x;
     curr_y = (piece->get_piece()[i])->get_y() + y;
@@ -93,7 +93,7 @@ bool Board::place_piece(Piece* piece, int x, int y)
 
   if(can_place)
   {
-    for(int i = 0; i < piece->get_piece().size(); i++)
+    for(unsigned int i = 0; i < piece->get_piece().size(); i++)
     {
       curr_x = (piece->get_piece()[i])->get_x() + x;
       curr_y = (piece->get_piece()[i])->get_y() + y;
