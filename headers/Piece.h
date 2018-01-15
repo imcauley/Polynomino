@@ -14,12 +14,14 @@ private:
   vector<Block*> blocks;
 public:
   Piece(char name, int size);
-  char get_name();
+  ~Piece();
   void add_block(int x, int y);
-  void print_peice();
+
+  char get_name();
   vector<Block*> get_piece();
+  void get_set(vector<Piece*>* set);
+
   Piece* rotate_piece();
   Piece* reflect_piece();
-  void get_set(vector<Piece*>* set);
   bool isEqualTo(Piece* that);
 };

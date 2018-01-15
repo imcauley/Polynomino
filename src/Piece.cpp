@@ -30,6 +30,14 @@ Piece::Piece(char name, int size)
   blocks.resize(0);
 }
 
+Piece::~Piece()
+{
+  for(int i = 0; i < blocks.size(); i++)
+  {
+    delete blocks[i];
+  }
+}
+
 
 void Piece::add_block(int x, int y)
 {
@@ -57,24 +65,39 @@ char Piece::get_name()
   return name;
 }
 
-void Piece::print_peice()
-{
-
-}
-
+/*
+Passing in an empty vector will return a vector every
+  "variation" of that piece, both rotated and reflected
+*/
 void Piece::get_set(vector<Piece*>* set)
 {
   bool alreadyContains = false;
   set->push_back(this);
-  set->push_back(this->rotate_piece());
-  set->push_back(this->rotate_piece()->rotate_piece());
-  set->push_back(this->rotate_piece()->rotate_piece()->rotate_piece());
+  Piece* current = this->rotate_piece();
+
+  for(int i = 0; i < 7; i++)
+  {
+    alreadyContains = false;
+    for(int s = 0; s < set->size(); s++)
+    {
+      if(current->isEqualTo((*set)[s]))
+      {
+        alreadyContains = true;
+      }
+    }
+    if(!alreadyContains)
+    {
+      set->push_back(current);
+    }
+    current = current->rotate_piece();
+
+    if(i == 3)
+    {
+      current = current->reflect_piece();
+    }
+  }
 
 
-  set->push_back(this->reflect_piece());
-  set->push_back(this->reflect_piece()->rotate_piece());
-  set->push_back(this->reflect_piece()->rotate_piece()->rotate_piece());
-  set->push_back(this->reflect_piece()->rotate_piece()->rotate_piece()->rotate_piece());
 }
 
 /*
@@ -150,7 +173,7 @@ Piece* Piece::reflect_piece()
 
 bool Piece::isEqualTo(Piece* that)
 {
-  bool isEqualTo = true;
+  //bool isEqualTo = true;
   bool containsBlock = false;
   int sizeA = this->get_piece().size();
   int sizeB = that->get_piece().size();

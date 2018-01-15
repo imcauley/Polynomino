@@ -17,6 +17,7 @@ private:
   bool solve(vector<Piece*> pieces, int num_elements);
 public:
   Solver(string filename);
+  ~Solver();
   bool solve();
   void print_solved();
 };

@@ -17,6 +17,7 @@ void test_rotate();
 void test_back_track();
 void test_full();
 void test_equals();
+void test_5();
 
 void test_init()
 {
@@ -55,22 +56,10 @@ void test_full()
   TEST_CHECK(solve.solve() == true);
 }
 
-void test_equals()
+void test_5()
 {
-  Piece* piece1 = new Piece('A', 4);
-  Piece* piece2 = new Piece('B', 4);
-
-  piece1->add_block(1,0);
-  piece1->add_block(0,1);
-  piece1->add_block(1,1);
-  piece1->add_block(2,1);
-
-  piece2->add_block(1,0);
-  piece2->add_block(0,1);
-  piece2->add_block(1,1);
-  piece2->add_block(2,1);
-
-  TEST_CHECK(piece1->isEqualTo(piece2) == true);
+  Solver solve = Solver("./input/9.txt");
+  TEST_CHECK(solve.solve() == true);
 }
 
 TEST_LIST = {
@@ -79,5 +68,6 @@ TEST_LIST = {
   {"test I's", test_longs},
   {"rotate I", test_rotate},
   {"backtrack", test_back_track},
-  {"full", test_full}
+  {"full", test_full},
+  {"5", test_5}
 };

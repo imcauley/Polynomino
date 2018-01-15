@@ -49,6 +49,15 @@ Solver::Solver(const string filename)
   return;
 }
 
+Solver::~Solver()
+{
+  for(int i = 0; i < start_pieces.size(); i++)
+  {
+    delete start_pieces[i];
+  }
+  delete board;
+}
+
 void Solver::print_solved()
 {
   cout << endl;
@@ -59,7 +68,6 @@ void Solver::print_solved()
 bool Solver::solve()
 {
   bool solved = solve(start_pieces, start_pieces.size());
-  print_solved();
   return solved;
 
 }
